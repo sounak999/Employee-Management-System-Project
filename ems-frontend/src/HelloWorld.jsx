@@ -1,8 +1,7 @@
 function HelloWorld() {
     return (
         <>
-            <h1>Hello World!</h1>
-            <p>Welcome to the world of React!</p>
+            <h1 class = "text-center">Hello World!</h1>
         </>
     )
 }
