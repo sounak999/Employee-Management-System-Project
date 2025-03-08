@@ -10,7 +10,9 @@ function App() {
 			<BrowserRouter>
 				<HeaderComponent />
 				<Routes>
+					{/* http://localhost:3000 */}
 					<Route path="/" element={<ListEmployeeComponent />} />
+					{/* http://localhost:3000/employees */}
 					<Route path='/employees' element={<ListEmployeeComponent />} />
 				</Routes>
 				<FooterComponent />
