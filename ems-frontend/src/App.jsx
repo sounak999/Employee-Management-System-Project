@@ -1,11 +1,14 @@
-import HelloWorld from './HelloWorld'
+import './App.css'
 import ListEmployeeComponent from './component/ListEmployeeComponent'
+import HeaderComponent from './component/HeaderComponent'
+import FooterComponent from './component/FooterComponent'
 
 function App() {
   return (
     <>
-      {/* <HelloWorld /> */}
+      <HeaderComponent />
       <ListEmployeeComponent />
+      <FooterComponent />
     </>
   )
 }
