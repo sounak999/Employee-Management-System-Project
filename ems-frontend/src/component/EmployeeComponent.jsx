@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { createEmployee, getEmployeeById } from '../services/EmployeeService'
+import { createEmployee, getEmployeeById, updateEmployee } from '../services/EmployeeService'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const EmployeeComponent = () => {
@@ -34,7 +34,7 @@ const EmployeeComponent = () => {
 		return <h2 className='text-center'> {id ? 'Update Employee' : 'Add Employee'} </h2>
 	}
 
-	function saveEmployee(e) {
+	function saveOrUpdateEmployee(e) {
 		e.preventDefault();
 
 		if (!validateForm()) {
@@ -44,9 +44,24 @@ const EmployeeComponent = () => {
 		const employee = { firstName, lastName, email }
 		// console.log(employee)
 
+		// update logic
+		if (id) {
+			updateEmployee(employee, id).then((response) => {
+				// console.log(response.data);
+				navigator('/employees')
+			}).catch((error) => {
+				console.error(error)
+			})
+
+			return ;
+		}
+
+		// create logic
 		createEmployee(employee).then((response) => {
 			// console.log(response.data);
 			navigator('/employees')
+		}).catch((error) => {
+			console.error(error);
 		});
 	}
 
@@ -84,7 +99,7 @@ const EmployeeComponent = () => {
 		<div className='container col-md-6 offset-md-3'>
 			<div className='row'>
 				<div className='card'>
-					{ pageTitle()}
+					{ pageTitle() }
 					<div className='card-body'>
 						<form>
 							<div className='form-group mb-2'>
@@ -125,7 +140,7 @@ const EmployeeComponent = () => {
 								{ errors.email && <div className='invalid-feedback'> { errors.email } </div> }
 							</div>
 
-							<button className='btn btn-success' onClick={saveEmployee}>Submit</button>
+							<button className='btn btn-success' onClick={saveOrUpdateEmployee}>Submit</button>
 						</form>
 					</div>
 				</div>
