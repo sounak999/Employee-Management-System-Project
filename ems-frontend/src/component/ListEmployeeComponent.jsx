@@ -12,7 +12,7 @@ const ListEmployeeComponent = () => {
 
     const getAllEmployees = () => {
         listEmployees().then((response) => { 
-            setEmployees(response.data);
+            setEmployees(response.data.sort((a, b) => a.id - b.id));
         }).catch((error) => {
             console.error(error);
         });
